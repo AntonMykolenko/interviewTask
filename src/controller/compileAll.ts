@@ -12,7 +12,7 @@ export async function compileAll(req: Request) {
         const [allSeats, allSections, allPrices] = await Promise.all([
             availableSeats(req),
             getSections(),
-            getPrices()
+            getPrices(req)
         ]);
 
         const compiledData: ticketDataJsonType[] = [];
@@ -25,7 +25,7 @@ export async function compileAll(req: Request) {
                 compiledData.push({ Section: sectionName, Row: SeatRow, SeatNumber, Price: price });
             }
         });
-
+        console.log(compiledData.length)
         return compiledData;
     } catch (error) {
         console.error('Error compiling data:', error);

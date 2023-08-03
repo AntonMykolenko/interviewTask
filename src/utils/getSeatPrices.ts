@@ -1,11 +1,15 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { pricesJsonType } from '../schemas/pricesJsonType';
+import { Request } from 'express'; 
 
-export const getPrices = async () => {
-    try {
-      const response = await axios.get("https://my.laphil.com/en/rest-proxy/TXN/Packages/1195/Prices?expandPerformancePriceType=&includeOnlyBasePrice=&modeOfSaleId=26&priceTypeId=&sourceId=30885");
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching sections:', error);
-      return null;
-    }
-  };
+export async function getPrices(req: Request): Promise<pricesJsonType[]> {
+  const id = req.query.id;
+  try {
+    const response: AxiosResponse<pricesJsonType[]> = await axios.get(
+      `https://my.laphil.com/en/rest-proxy/TXN/Packages/${id}/Prices?expandPerformancePriceType=&includeOnlyBasePrice=&modeOfSaleId=26&priceTypeId=&sourceId=30885`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch allSeats data.");
+  }
+};

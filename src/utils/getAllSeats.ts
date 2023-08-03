@@ -7,7 +7,7 @@ export async function fetchAllSeats(req: Request): Promise<seatsJsonType[]> {
     const id = req.query.id; 
 
     const response: AxiosResponse<seatsJsonType[]> = await axios.get(
-      `https://my.laphil.com/en/rest-proxy/TXN/Packages/1195/Seats?constituentId=0&modeOfSaleId=26&packageId=${id}`
+      `https://my.laphil.com/en/rest-proxy/TXN/Packages/${id}/Seats?constituentId=0&modeOfSaleId=26&packageId=${id}`
     );
 
     return response.data;

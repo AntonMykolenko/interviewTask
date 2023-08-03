@@ -5,6 +5,7 @@ describe('GraphQL API', () => {
     it('should return all tickets', async () => {
         const response = await request(server)  
             .post('/allTickets')
+            .query({ id: 1196 })
             .send({
                 query: `
             {
@@ -23,4 +24,3 @@ describe('GraphQL API', () => {
         expect(response.body.data.allTickets).toBeInstanceOf(Array);
     });
 });
-

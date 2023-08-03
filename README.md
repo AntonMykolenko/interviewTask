@@ -2,7 +2,9 @@
 <h2>Endpoints</h2>
 <p>/allTickets</p>
 <p>GraphQL Query</p>
+<p>Also to choose specific event you should add id parameter to your request parameters</p>
 <p>Request example</p>
+id=1195
 <pre>
   {
 	allTickets {
